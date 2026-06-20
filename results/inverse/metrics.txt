@@ -1,0 +1,10 @@
+# Inverse PINN: One-Dimensional Heat Equation
+
+True alpha               : 0.10000000
+Initial alpha            : 0.05000000
+Learned alpha            : 0.09971152
+Relative alpha error     : 2.884850e-03
+Relative L2 error        : 1.956817e-03
+Maximum absolute error   : 7.650878e-03
+Mean absolute error      : 6.228841e-04
+RMSE                     : 9.134969e-04
