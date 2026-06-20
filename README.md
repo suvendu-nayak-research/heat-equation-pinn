@@ -2,67 +2,69 @@
 
 This repository implements a forward physics-informed neural network for the one-dimensional heat equation using PyTorch.
 
-The inverse PINN for thermal-diffusivity identification will be added separately.
+The inverse PINN for thermal-diffusivity identification will be added later.
 
 ## Problem
 
 The heat equation is
 
-[
+$$
 u_t-\alpha u_{xx}=0,
-\qquad 0\leq x\leq 1,
-\qquad 0\leq t\leq 1,
-]
+\qquad
+0\leq x\leq 1,
+\qquad
+0\leq t\leq 1.
+$$
 
-with thermal diffusivity
+The thermal diffusivity is
 
-[
+$$
 \alpha=0.1.
-]
+$$
 
 The initial condition is
 
-[
-u(x,0)=\sin(\pi x),
-]
+$$
+u(x,0)=\sin(\pi x).
+$$
 
-and the boundary conditions are
+The boundary conditions are
 
-[
+$$
 u(0,t)=0,
 \qquad
 u(1,t)=0.
-]
+$$
 
 The exact solution is
 
-[
+$$
 u(x,t)=e^{-\alpha\pi^2t}\sin(\pi x).
-]
+$$
 
 ## PINN Formulation
 
-The neural network approximates
+The neural network approximates the solution as
 
-[
-u(x,t)\approx u_\theta(x,t).
-]
+$$
+u(x,t)\approx u_{\theta}(x,t).
+$$
 
 The PDE residual is
 
-[
-f_\theta(x,t)
-=============
+$$
+f_{\theta}(x,t)
+===============
 
-## \frac{\partial u_\theta}{\partial t}
+## \frac{\partial u_{\theta}}{\partial t}
 
 \alpha
-\frac{\partial^2 u_\theta}{\partial x^2}.
-]
+\frac{\partial^2 u_{\theta}}{\partial x^2}.
+$$
 
-The total training loss is
+The total loss is
 
-[
+$$
 \mathcal{L}
 ===========
 
@@ -71,14 +73,14 @@ The total training loss is
 \mathcal{L}*{\mathrm{IC}}
 +
 \mathcal{L}_{\mathrm{BC}}.
-]
+$$
 
-The derivatives are computed using PyTorch automatic differentiation.
+PyTorch automatic differentiation is used to compute the required derivatives.
 
 ## Network and Training Parameters
 
-* Input variables: (x) and (t)
-* Output variable: (u(x,t))
+* Inputs: $x$ and $t$
+* Output: $u(x,t)$
 * Hidden layers: 4
 * Neurons per hidden layer: 32
 * Activation function: `tanh`
@@ -86,7 +88,7 @@ The derivatives are computed using PyTorch automatic differentiation.
 * Initial-condition points: 100
 * Boundary points: 100
 * Optimizer: Adam
-* Learning rate: (10^{-3})
+* Learning rate: $10^{-3}$
 * Training epochs: 5,000
 * Random seed: 1234
 
@@ -119,33 +121,28 @@ pip install -r requirements.txt
 python forward_heat_pinn.py
 ```
 
-The program automatically creates the output directory
+The program creates the following output folder automatically:
 
 ```text
 results/forward/
 ```
 
-and saves the error metrics and figures.
-
 ## Results
-
-The final forward-PINN errors are:
 
 | Metric                 |                   Value |
 | ---------------------- | ----------------------: |
-| Relative (L_2) error   | (2.010477\times10^{-3}) |
-| Maximum absolute error | (8.217622\times10^{-3}) |
-| Mean absolute error    | (6.399890\times10^{-4}) |
-| RMSE                   | (9.385468\times10^{-4}) |
+| Relative $L_2$ error   | $2.010477\times10^{-3}$ |
+| Maximum absolute error | $8.217622\times10^{-3}$ |
+| Mean absolute error    | $6.399890\times10^{-4}$ |
+| RMSE                   | $9.385468\times10^{-4}$ |
 
+## Solution Comparison
 
-### Exact Solution, PINN Solution, and Absolute Error
+![Exact solution, PINN solution, and absolute error](results/forward/solution_comparison.png)
 
-![Solution comparison](results/forward/solution_comparison.png)
+## Training History
 
-### Training History
-
-![Training history](results/forward/loss_history.png)
+![PINN training history](results/forward/loss_history.png)
 
 ## License
 
