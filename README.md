@@ -138,6 +138,7 @@ The final forward-PINN errors are:
 | Mean absolute error    | (6.399890\times10^{-4}) |
 | RMSE                   | (9.385468\times10^{-4}) |
 
+
 ### Exact Solution, PINN Solution, and Absolute Error
 
 ![Solution comparison](results/forward/solution_comparison.png)
