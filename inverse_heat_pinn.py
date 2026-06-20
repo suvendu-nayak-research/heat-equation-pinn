@@ -319,6 +319,7 @@ print("\n" + metrics_text)
 # ============================================================
 # 10. PLOTS
 # ============================================================
+
 plt.figure(figsize=(8, 5))
 
 plt.semilogy(total_loss_history, label="Total loss")
@@ -334,15 +335,17 @@ plt.legend()
 plt.tight_layout()
 
 plt.savefig(
-    output_dir / "loss_history.png",
+    output_dir / "inverse_loss_history.png",
     dpi=300
 )
 
 plt.close()
 
+
 plt.figure(figsize=(8, 5))
 
 plt.plot(alpha_history, label="Learned alpha")
+
 plt.axhline(
     y=alpha_true,
     linestyle="--",
@@ -356,13 +359,18 @@ plt.legend()
 plt.tight_layout()
 
 plt.savefig(
-    output_dir / "alpha_history.png",
+    output_dir / "inverse_alpha_history.png",
     dpi=300
 )
 
 plt.close()
 
-fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+
+fig, axes = plt.subplots(
+    1,
+    3,
+    figsize=(18, 5)
+)
 
 plot_data = [
     u_exact,
@@ -376,7 +384,11 @@ plot_titles = [
     "Absolute Error"
 ]
 
-for axis, data, title in zip(axes, plot_data, plot_titles):
+for axis, data, title in zip(
+    axes,
+    plot_data,
+    plot_titles
+):
     image = axis.pcolormesh(
         X_grid,
         T_grid,
@@ -388,16 +400,20 @@ for axis, data, title in zip(axes, plot_data, plot_titles):
     axis.set_ylabel("t")
     axis.set_title(title)
 
-    fig.colorbar(image, ax=axis)
+    fig.colorbar(
+        image,
+        ax=axis
+    )
 
 plt.tight_layout()
 
 plt.savefig(
-    output_dir / "solution_comparison.png",
+    output_dir / "inverse_results_heatmaps.png",
     dpi=300
 )
 
 plt.close()
+
 
 print("Saved files:")
 print("1. results/inverse/metrics.txt")
