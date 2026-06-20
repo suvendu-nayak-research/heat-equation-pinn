@@ -52,28 +52,11 @@ $$
 
 The PDE residual is
 
-$$
-f_{\theta}(x,t)
-===============
-
-## \frac{\partial u_{\theta}}{\partial t}
-
-\alpha
-\frac{\partial^2 u_{\theta}}{\partial x^2}.
-$$
+$$f_{\theta}(x,t)=\frac{\partial u_{\theta}}{\partial t}-\alpha\frac{\partial^2u_{\theta}}{\partial x^2}.$$
 
 The total loss is
 
-$$
-\mathcal{L}
-===========
-
-\mathcal{L}*{\mathrm{PDE}}
-+
-\mathcal{L}*{\mathrm{IC}}
-+
-\mathcal{L}_{\mathrm{BC}}.
-$$
+$$\mathcal{L}=\mathcal{L}*{\mathrm{PDE}}+\mathcal{L}*{\mathrm{IC}}+\mathcal{L}_{\mathrm{BC}}.$$
 
 PyTorch automatic differentiation is used to compute the required derivatives.
 
