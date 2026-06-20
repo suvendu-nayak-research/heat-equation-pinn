@@ -322,13 +322,10 @@ plt.savefig(
 
 plt.close()
 
-torch.save(
-    model.state_dict(),
-    output_dir / "heat_equation_pinn.pt"
-)
+
 
 print("Saved files:")
 print("1. results/forward/metrics.txt")
 print("2. results/forward/loss_history.png")
 print("3. results/forward/solution_comparison.png")
-print("4. results/forward/heat_equation_pinn.pt")
+
