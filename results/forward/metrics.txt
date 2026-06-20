@@ -1,0 +1,7 @@
+# Forward PINN: One-Dimensional Heat Equation
+
+Thermal diffusivity alpha : 0.100000
+Relative L2 error         : 2.010477e-03
+Maximum absolute error    : 8.217622e-03
+Mean absolute error       : 6.399890e-04
+RMSE                      : 9.385468e-04
